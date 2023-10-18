@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Note } from 'src/app/interfaces/note';
 import { NoteService } from 'src/app/services/note.service';
 
@@ -9,10 +9,10 @@ import { NoteService } from 'src/app/services/note.service';
   styleUrls: ['./note-form.component.scss']
 })
 export class NoteFormComponent implements OnInit, OnChanges {
-  noteForm!: FormGroup;
+  noteForm!: UntypedFormGroup;
   @Input() selectedNote!: Note;
   isEdit!: boolean;
-  constructor(private noteService: NoteService, private formBuilder: FormBuilder) { this.noteService.getEditable().subscribe({
+  constructor(private noteService: NoteService, private formBuilder: UntypedFormBuilder) { this.noteService.getEditable().subscribe({
     next: (response) => (this.isEdit = response),
   });
 }
